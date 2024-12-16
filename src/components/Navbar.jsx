@@ -12,19 +12,6 @@ const Navbar = ({ openModal,openCModal }) => {
   const toggleNavbar = () => {
     setmobileFeawerOpen(!mobileDrawerOpen);
   };
-
-  const handleClick = (e) => {
-
-    console.log("clicked modal");
-    openModal();
-
-  };
-
-  const handleCreateAccountClick = (e) => {
-
-    openCModal();
-  };
-
   return (
     <nav className='sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80'>
       <div className="container px-4 mx-auto relative text-sm">
@@ -42,7 +29,7 @@ const Navbar = ({ openModal,openCModal }) => {
           </ul>
           <div className='hidden lg:flex justify-center space-x-12 items-center'>
             <a href="#" onClick={ openModal } className='py-2 px-3 border rounded-md'>SignIn</a>
-            <a href="#" className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Crate an account</a>
+            <a href="#" onClick={ openCModal } className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Crate an account</a>
           </div>
           <div className='lg:hidden md:flex flex-col justify-end mt-2'>
             <button onClick={toggleNavbar}>
@@ -60,9 +47,10 @@ const Navbar = ({ openModal,openCModal }) => {
               ))}
             </ul>
             <div className='flex space-x-8'>
-            <button  onClick={ handleClick } className='py-2 px-3 border rounded-md'>Login</button>
-            <button  onClick={ handleCreateAccountClick } className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Create account</button>
-            <button className='text-white'>hii</button>
+                <button  onClick={ openModal } className='py-2 px-3 border rounded-md'>
+                  SignIn
+                </button>
+                <button  onClick={ openCModal } className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Create an</button>
             </div>
           </div>
         )}
