@@ -5,12 +5,24 @@ import { Menu,X } from 'lucide-react';
 import { useState } from 'react';
 
 
-const Navbar = () => {
+const Navbar = ({ openModal,openCModal }) => {
   
   const [mobileDrawerOpen, setmobileFeawerOpen] = useState(false);
 
   const toggleNavbar = () => {
     setmobileFeawerOpen(!mobileDrawerOpen);
+  };
+
+  const handleClick = (e) => {
+
+    console.log("clicked modal");
+    openModal();
+
+  };
+
+  const handleCreateAccountClick = (e) => {
+
+    openCModal();
   };
 
   return (
@@ -23,13 +35,13 @@ const Navbar = () => {
           </div>
           <ul className='hidden lg:flex ml-14 space-x-12 mt-1'>
             {navItems.map((item,index) => (
-              <li key={index}>
-                <a href={item.href}>{item.label}</a>
+              <li key={index} className='relative group'>
+                <a href={item.href} className='group'>{item.label} <span className='absolute bottom-0 left-0 bg-amber-500 h-[2px] w-0 group-hover:w-full transition-all duration-500'></span></a>
               </li>
             ))}
           </ul>
           <div className='hidden lg:flex justify-center space-x-12 items-center'>
-            <a href="#" className='py-2 px-3 border rounded-md'>SignIn</a>
+            <a href="#" onClick={ openModal } className='py-2 px-3 border rounded-md'>SignIn</a>
             <a href="#" className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Crate an account</a>
           </div>
           <div className='lg:hidden md:flex flex-col justify-end mt-2'>
@@ -43,19 +55,22 @@ const Navbar = () => {
             <ul>
               {navItems.map((item,index) => (
                 <li key={index} className='py-4'>
-                  <a href={item.href}>{item.label}</a>
+                  <a href={item.href} className='hover:text-black'>{item.label}</a>
                 </li>
               ))}
             </ul>
             <div className='flex space-x-8'>
-            <a href="#" className='py-2 px-3 border rounded-md'>SignIn</a>
-            <a href="#" className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Crate an account</a>
+            <button  onClick={ handleClick } className='py-2 px-3 border rounded-md'>Login</button>
+            <button  onClick={ handleCreateAccountClick } className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 border rounded-md'>Create account</button>
+            <button className='text-white'>hii</button>
             </div>
           </div>
         )}
       </div>
+
+      {/* <Login/> */}
     </nav>
   )
-}
+};
 
 export default Navbar
